@@ -1,4 +1,6 @@
-package ejercicio1;
+package ejercicio1.ui;
+
+import ejercicio1.model.Participantes;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -6,8 +8,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class AgregarParticipante extends JFrame {
@@ -15,18 +15,13 @@ public class AgregarParticipante extends JFrame {
     private JTextField nombre;
     private JTextField telefono;
     private JTextField region;
+    private Participantes listaParticipantes;
 
-    public AgregarParticipante() throws SQLException {
-        setupBaseDeDatos();
+    public AgregarParticipante(Participantes participantes) throws SQLException {
+        this.listaParticipantes = participantes;
         setupUIComponents();
     }
 
-    private void setupBaseDeDatos() throws SQLException {
-        String url = "jdbc:derby:memory:participantes;create=true";
-        String user = "app";
-        String password = "app";
-        this.dbConn = DriverManager.getConnection(url, user, password);
-    }
 
     private void setupUIComponents() {
         setTitle("Add Participant");
@@ -65,39 +60,14 @@ public class AgregarParticipante extends JFrame {
     }
 
     private void onBotonCargar() throws SQLException {
-        if (nombre.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Debe cargar un nombre");
-
-            return;
-        }
-        if (telefono.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Debe cargar un telefono");
-            return;
-        }
-        if (!validarTelefono(telefono.getText())) {
-            JOptionPane.showMessageDialog(this, "El teléfono debe ingresarse de la siguiente  forma: NNNN-NNNNNN");
-            return;
-        }
-        if (!region.getText().equals("China") && !region.getText().equals("US") && !
-                region.getText().equals("Europa")) {
-            JOptionPane.showMessageDialog(this, "Region desconocida. Las conocidas son:  China, US, Europa");
-            return;
-        }
-        PreparedStatement st = dbConn
-                .prepareStatement("insert into participantes(nombre, telefono, region) values(?,?,?)");
         try {
-            st.setString(1, nombre.getText());
-            st.setString(2, telefono.getText());
-            st.setString(3, region.getText());
-            st.executeUpdate();
-        } finally {
-            st.close();
+            this.listaParticipantes.nuevoParticipante(nombre.getText(), telefono.getText(), region.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            return;
         }
+
         dispose();
     }
 
-    private boolean validarTelefono(String telefono) {
-        String regex = "\\d{4}-\\d{6}";
-        return telefono.matches(regex);
-    }
 }
