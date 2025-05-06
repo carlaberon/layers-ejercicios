@@ -1,6 +1,8 @@
 package ejercicio3;
 
+import ejercicio3.model.Concurso;
 import ejercicio3.model.Inscriptos;
+import ejercicio3.model.RegistroDeConcursos;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -8,6 +10,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RadioCompetition {
     private JPanel contentPane;
@@ -24,10 +28,14 @@ public class RadioCompetition {
     private JComboBox<String> comboBox;
     private JButton btnOk;
     private JLabel lblCompetition;
-    private Inscriptos listaInscriptos;
+    private Inscriptos inscriptos;
+    private RegistroDeConcursos registroDeConcursos;
+    private List<Concurso> listaDeConcursos;
 
-    public RadioCompetition(Inscriptos inscriptos) {
-        this.listaInscriptos = inscriptos;
+    public RadioCompetition(Inscriptos inscriptos, RegistroDeConcursos listaConcursos) {
+        this.inscriptos = inscriptos;
+        this.listaDeConcursos = new ArrayList<>();
+        this.registroDeConcursos = listaConcursos;
         setupUIComponents();
 
     }
@@ -75,6 +83,7 @@ public class RadioCompetition {
 
     private void todosLosConcursos() {
         // carga del archivo de texto concursos.txt los concursos
+        this.listaDeConcursos = registroDeConcursos.concursos();
     }
 
     private void saveInscription() {
@@ -85,7 +94,7 @@ public class RadioCompetition {
 //        }
         try {
             //falta id concurso
-            listaInscriptos.nuevoParticipante(txtName.getText(), txtLastName.getText(), txtPhone.getText(), txtEmail.getText(), 0);
+            inscriptos.nuevoParticipante(txtName.getText(), txtLastName.getText(), txtPhone.getText(), txtEmail.getText(), 0);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(btnOk, e.getMessage());
         }
