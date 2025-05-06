@@ -7,11 +7,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 public class AgregarParticipante extends JFrame {
-    private Connection dbConn;
     private JTextField nombre;
     private JTextField telefono;
     private JTextField region;

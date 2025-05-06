@@ -1,24 +1,29 @@
 package ejercicio2;
 
-import ejercicio2.model.Empleados;
-import ejercicio2.services.LectorCVS;
+import ejercicio2.model.MensajeCumpleanios;
+import ejercicio2.services.LectorCsvEmpleados;
+import ejercicio2.services.ServiceMensaje;
 
 import java.io.IOException;
+import java.time.MonthDay;
 
 public class Main {
+
+    public static final String HOST = "sandbox.smtp.mailtrap.io";
+    public static final String PORT = "2525";
+    public static final String HABILITAR_AUTENTICACION = "true";
+    public static final String USERNAME = "0396297949b4d1";
+    public static final String PWD = "e4c28348b3d4dc";
+    public static final String PATH = "src/main/resources/empleados.csv";
+
     public static void main(String[] args) throws IOException {
-        var empleados = new Empleados(new LectorCVS("src/main/resources/empleados.csv"));
 
-        empleados.listaDeEmpleados().stream()
-                .forEach(empleado -> System.out.println(empleado[0] + empleado[1]));
-
-        //FILTRAR POR FECHA NO FUNCIONA
-//        var resultado = empleados.filtrarPor("fecha de nacimiento", "2025/05/02").where();
-//
-        //filtrar por apellido
-        var resultado = empleados.filtrarPor("apellido", "Young").where();
-
-        resultado.stream().forEach(Empleados -> System.out.println(Empleados[0] + Empleados[1]));
+        LectorCsvEmpleados lectorDeEmpleados = new LectorCsvEmpleados(PATH);
+        var listaDeEmpleados = lectorDeEmpleados.empleados();
+        listaDeEmpleados.stream().forEach(Empleado -> System.out.println(Empleado.email()));
+        var notificacion = new ServiceMensaje(PWD, USERNAME, HABILITAR_AUTENTICACION, "true", HOST, PORT);
+        var mensajeCumpleanios = new MensajeCumpleanios(lectorDeEmpleados, notificacion);
+        mensajeCumpleanios.enviarSaludos(MonthDay.of(10, 8));
 
 
     }
