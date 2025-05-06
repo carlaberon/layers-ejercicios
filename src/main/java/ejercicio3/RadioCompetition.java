@@ -1,5 +1,7 @@
 package ejercicio3;
 
+import ejercicio3.model.Inscriptos;
+
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -22,8 +24,11 @@ public class RadioCompetition {
     private JComboBox<String> comboBox;
     private JButton btnOk;
     private JLabel lblCompetition;
+    private Inscriptos listaInscriptos;
 
-    public RadioCompetition() {
+    public RadioCompetition(Inscriptos inscriptos) {
+        this.listaInscriptos = inscriptos;
+
         var frame = new JFrame("Inscription to Competition");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 451, 229);
@@ -69,51 +74,13 @@ public class RadioCompetition {
     }
 
     private void saveInscription() {
-        if (validations()) {
-            // Guarda en inscriptos.txt los datos de la persona y el concurso elegido
-        }
+        /*las validaciones están en los objetos*/
+
+//        if (validations()) {
+//            // Guarda en inscriptos.txt los datos de la persona y el concurso elegido
+//        }
     }
 
-    private boolean validations() {
-        if ("".equals(txtName.getText())) {
-            JOptionPane.showMessageDialog(this.contentPane, "Nombre no puede ser vacio");
-            return false;
-        }
-        if ("".equals(txtLastName.getText())) {
-            JOptionPane.showMessageDialog(this.contentPane,
-                    "apellido no puede ser vacio");
-            return false;
-        }
-        if ("".equals(txtId.getText())) {
-            JOptionPane.showMessageDialog(this.contentPane, "dni no puede ser vacio");
-            return false;
-        }
-        if (!checkEmail(txtEmail.getText())) {
-            JOptionPane.showMessageDialog(this.contentPane,
-                    "email debe ser válido");
-            return false;
-        }
-        if (!checkPhone(txtPhone.getText())) {
-            JOptionPane.showMessageDialog(this.contentPane,
-                    "El teléfono debe ingresarse de la siguiente forma: NNNN-NNNNNN");
-            return false;
-        }
-        if (this.comboBox.getSelectedIndex() <= 0) {
-            JOptionPane.showMessageDialog(this.contentPane, "Debe elegir un Concurso");
-            return false;
-        }
-        return true;
-    }
-
-    private boolean checkEmail(String email) {
-        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-        return email.matches(regex);
-    }
-
-    private boolean checkPhone(String telefono) {
-        String regex = "\\d{4}-\\d{6}";
-        return telefono.matches(regex);
-    }
 
     private void layout() {
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
