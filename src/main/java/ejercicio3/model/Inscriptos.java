@@ -9,7 +9,7 @@ public class Inscriptos {
     }
 
     public void nuevoParticipante(String apellido, String nombre, String telefono, String email, int idConcurso) {
-        var inscripto = new Inscripto(apellido, nombre, telefono, email, idConcurso);
+        var inscripto = new Inscripto(nombre, apellido, telefono, email, idConcurso);
         this.registroDeInscriptos.registrar(inscripto);
     }
 }

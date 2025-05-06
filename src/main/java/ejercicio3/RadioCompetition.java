@@ -28,7 +28,11 @@ public class RadioCompetition {
 
     public RadioCompetition(Inscriptos inscriptos) {
         this.listaInscriptos = inscriptos;
+        setupUIComponents();
 
+    }
+
+    private void setupUIComponents() {
         var frame = new JFrame("Inscription to Competition");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 451, 229);
@@ -41,12 +45,12 @@ public class RadioCompetition {
     }
 
     private void formElements() {
-        lblName = new JLabel("Nombre:");
-        txtName = new JTextField();
-        txtName.setColumns(10);
         lblLastName = new JLabel("Apellido:");
         txtLastName = new JTextField();
         txtLastName.setColumns(10);
+        lblName = new JLabel("Nombre:");
+        txtName = new JTextField();
+        txtName.setColumns(10);
         lblId = new JLabel("Dni:");
         txtId = new JTextField();
         txtId.setColumns(10);
@@ -79,6 +83,12 @@ public class RadioCompetition {
 //        if (validations()) {
 //            // Guarda en inscriptos.txt los datos de la persona y el concurso elegido
 //        }
+        try {
+            //falta id concurso
+            listaInscriptos.nuevoParticipante(txtName.getText(), txtLastName.getText(), txtPhone.getText(), txtEmail.getText(), 0);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(btnOk, e.getMessage());
+        }
     }
 
 

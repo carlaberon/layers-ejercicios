@@ -14,4 +14,8 @@ public class Telefono {
         String regex = "\\d{4}-\\d{6}";
         return telefono.matches(regex);
     }
+
+    public String formatoSimple() {
+        return this.telefono;
+    }
 }

@@ -14,4 +14,8 @@ public class Email {
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(regex);
     }
+
+    public String formatoSimple() {
+        return this.email;
+    }
 }
