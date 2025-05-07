@@ -12,9 +12,6 @@ public class Main {
     public static final String PATH = "src/main/resources/concursos.txt";
 
     public static void main(String[] args) {
-//        LectorTxtConcursos lectorTxtConcursos = new LectorTxtConcursos(PATH);
-//        var listaDeConcursos = lectorTxtConcursos.concursos();
-//        listaDeConcursos.stream().forEach(c -> System.out.println(c.nombre()));
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -37,8 +34,13 @@ public class Main {
                 //registrar -> falta implementacion
             }
         };
+//        ArchivoDeInscriptos archivoDeInscriptos = new ArchivoDeInscriptos(PATH);
+
         Inscriptos inscriptos1 = new Inscriptos(inscriptos);
-        var listaDeConcursos = lectorTxtConcursos.concursos();
+//        Inscriptos inscriptos1 = new Inscriptos(archivoDeInscriptos);
+
+
+//        new RadioCompetition(inscriptos1, lectorTxtConcursos);
         new RadioCompetition(inscriptos1, lectorTxtConcursos);
     }
 }

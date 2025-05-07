@@ -78,7 +78,6 @@ public class RadioCompetition {
         });
         lblCompetition = new JLabel("Concurso:");
         comboBox = new JComboBox<String>();
-
         todosLosConcursos();
     }
 
