@@ -78,12 +78,16 @@ public class RadioCompetition {
         });
         lblCompetition = new JLabel("Concurso:");
         comboBox = new JComboBox<String>();
+
         todosLosConcursos();
     }
 
     private void todosLosConcursos() {
         // carga del archivo de texto concursos.txt los concursos
         this.listaDeConcursos = registroDeConcursos.concursos();
+        for (Concurso concurso : listaDeConcursos) {
+            comboBox.addItem(concurso.nombre());
+        }
     }
 
     private void saveInscription() {
