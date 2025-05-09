@@ -1,5 +1,6 @@
 package ejercicio2;
 
+import ejercicio2.database.PersistenciaRegistroDeEmpleados;
 import ejercicio2.model.MensajeCumpleanios;
 import ejercicio2.services.LectorCsvEmpleados;
 import ejercicio2.services.ServiceMensaje;
@@ -19,8 +20,13 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         LectorCsvEmpleados lectorDeEmpleados = new LectorCsvEmpleados(PATH);
+
         var listaDeEmpleados = lectorDeEmpleados.empleados();
-        listaDeEmpleados.stream().forEach(Empleado -> System.out.println(Empleado.email()));
+
+        PersistenciaRegistroDeEmpleados persistencia = new PersistenciaRegistroDeEmpleados();
+
+        listaDeEmpleados.stream().forEach(empleado -> persistencia.registrar(empleado));
+
         var notificacion = new ServiceMensaje(PWD, USERNAME, HABILITAR_AUTENTICACION, "true", HOST, PORT);
         var mensajeCumpleanios = new MensajeCumpleanios(lectorDeEmpleados, notificacion);
         mensajeCumpleanios.enviarSaludos(MonthDay.of(10, 8));

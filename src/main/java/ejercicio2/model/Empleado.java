@@ -28,4 +28,16 @@ public class Empleado {
     public String email() {
         return email;
     }
+
+    public LocalDate fechaNacimiento() {
+        return this.fechaDeNacimiento;
+    }
+
+    public String nombre() {
+        return this.nombre;
+    }
+
+    public String apellido() {
+        return this.apellido;
+    }
 }

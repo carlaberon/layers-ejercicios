@@ -35,7 +35,7 @@ public class LectorCsvEmpleados implements RegistroDeEmpleados {
                 }
 
                 String[] partes = linea.split(",\\s*");
-                if (partes.length != 4) continue; // saltar líneas inválidas
+                if (partes.length != 4) continue;
 
                 String apellido = partes[0];
                 String nombre = partes[1];
@@ -50,6 +50,11 @@ public class LectorCsvEmpleados implements RegistroDeEmpleados {
         }
 
         return empleados;
+    }
+
+    @Override
+    public void registrar(Empleado empleado) {
+
     }
 }
 
