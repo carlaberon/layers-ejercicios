@@ -1,10 +1,8 @@
 package ejercicio3;
 
 import ejercicio3.database.DataBaseRegistroDeConcursos;
-import ejercicio3.model.Inscripto;
+import ejercicio3.database.PersistenciaRegistroDeInscriptos;
 import ejercicio3.model.Inscriptos;
-import ejercicio3.model.RegistroInscriptos;
-import ejercicio3.services.ArchivoDeInscriptos;
 
 import javax.swing.*;
 
@@ -32,16 +30,18 @@ public class Main {
 //
         DataBaseRegistroDeConcursos registroBD = new DataBaseRegistroDeConcursos();
 
-        RegistroInscriptos inscriptos = new RegistroInscriptos() {
-            @Override
-            public void registrar(Inscripto inscripto) {
-                //registrar -> falta implementacion
-            }
-        };
-        ArchivoDeInscriptos archivoDeInscriptos = new ArchivoDeInscriptos(PATH_INSCRIPTOS);
+//        RegistroInscriptos inscriptos = new RegistroInscriptos() {
+//            @Override
+//            public void registrar(Inscripto inscripto) {
+//                //registrar -> falta implementacion
+//            }
+//        };
+//        ArchivoDeInscriptos archivoDeInscriptos = new ArchivoDeInscriptos(PATH_INSCRIPTOS);
+        PersistenciaRegistroDeInscriptos registroDeInscriptos = new PersistenciaRegistroDeInscriptos();
 
 //        Inscriptos inscriptos1 = new Inscriptos(inscriptos);
-        Inscriptos inscriptos1 = new Inscriptos(archivoDeInscriptos);
+//        Inscriptos inscriptos1 = new Inscriptos(archivoDeInscriptos);
+        Inscriptos inscriptos1 = new Inscriptos(registroDeInscriptos);
 
 
 //        new RadioCompetition(inscriptos1, lectorTxtConcursos);

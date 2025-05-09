@@ -74,6 +74,7 @@ public class RadioCompetition {
                 btnOk.setEnabled(false);
                 saveInscription();
                 btnOk.setEnabled(true);
+                System.exit(0);
             }
         });
         lblCompetition = new JLabel("Concurso:");
