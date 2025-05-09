@@ -25,7 +25,7 @@ public class RadioCompetition {
     private JTextField txtPhone;
     private JLabel lblEmail;
     private JTextField txtEmail;
-    private JComboBox<String> comboBox;
+    private JComboBox<Concurso> comboBox;
     private JButton btnOk;
     private JLabel lblCompetition;
     private Inscriptos inscriptos;
@@ -77,7 +77,7 @@ public class RadioCompetition {
             }
         });
         lblCompetition = new JLabel("Concurso:");
-        comboBox = new JComboBox<String>();
+        comboBox = new JComboBox<>();
         todosLosConcursos();
     }
 
@@ -85,19 +85,23 @@ public class RadioCompetition {
         // carga del archivo de texto concursos.txt los concursos
         this.listaDeConcursos = registroDeConcursos.concursos();
         for (Concurso concurso : listaDeConcursos) {
-            comboBox.addItem(concurso.nombre());
+            comboBox.addItem(concurso);
         }
+    }
+
+    private int obtenerIdConcursoSeleccionado() {
+        Concurso concursoSeleccionado = (Concurso) comboBox.getSelectedItem();
+        return concursoSeleccionado.id();
     }
 
     private void saveInscription() {
         /*las validaciones están en los objetos*/
 
-//        if (validations()) {
 //            // Guarda en inscriptos.txt los datos de la persona y el concurso elegido
-//        }
+
         try {
             //falta id concurso
-            inscriptos.nuevoParticipante(txtName.getText(), txtLastName.getText(), txtPhone.getText(), txtEmail.getText(), 0);
+            inscriptos.nuevoParticipante(txtName.getText(), txtLastName.getText(), txtPhone.getText(), txtEmail.getText(), obtenerIdConcursoSeleccionado());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(btnOk, e.getMessage());
         }

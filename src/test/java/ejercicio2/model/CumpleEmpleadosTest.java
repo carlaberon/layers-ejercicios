@@ -21,6 +21,11 @@ public class CumpleEmpleadosTest {
             public List<Empleado> empleados() {
                 return List.of(empleado1, empleado2);
             }
+
+            @Override
+            public void registrar(Empleado empleado) {
+                //consultar por éste método
+            }
         };
         var notificacion = new FakeNotificacion();
         var mensaje = new MensajeCumpleanios(registroDeEmpleados, notificacion);

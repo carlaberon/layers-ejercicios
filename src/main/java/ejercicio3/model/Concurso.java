@@ -19,4 +19,14 @@ public class Concurso {
     public String nombre() {
         return this.nombre;
     }
+
+    public int id() {
+        return this.idConcurso;
+    }
+
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
 }
+

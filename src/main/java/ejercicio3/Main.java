@@ -4,12 +4,14 @@ import ejercicio3.model.Inscripto;
 import ejercicio3.model.Inscriptos;
 import ejercicio3.model.RegistroDeConcursos;
 import ejercicio3.model.RegistroInscriptos;
+import ejercicio3.services.ArchivoDeInscriptos;
 import ejercicio3.services.LectorTxtConcursos;
 
 import javax.swing.*;
 
 public class Main {
-    public static final String PATH = "src/main/resources/concursos.txt";
+    public static final String PATH_CONCURSOS = "src/main/resources/concursos.txt";
+    private static final String PATH_INSCRIPTOS = "src/main/resources/inscriptos.txt";
 
     public static void main(String[] args) {
 
@@ -27,17 +29,17 @@ public class Main {
     }
 
     private void start() {
-        RegistroDeConcursos lectorTxtConcursos = new LectorTxtConcursos(PATH);
+        RegistroDeConcursos lectorTxtConcursos = new LectorTxtConcursos(PATH_CONCURSOS);
         RegistroInscriptos inscriptos = new RegistroInscriptos() {
             @Override
             public void registrar(Inscripto inscripto) {
                 //registrar -> falta implementacion
             }
         };
-//        ArchivoDeInscriptos archivoDeInscriptos = new ArchivoDeInscriptos(PATH);
+        ArchivoDeInscriptos archivoDeInscriptos = new ArchivoDeInscriptos(PATH_INSCRIPTOS);
 
-        Inscriptos inscriptos1 = new Inscriptos(inscriptos);
-//        Inscriptos inscriptos1 = new Inscriptos(archivoDeInscriptos);
+//        Inscriptos inscriptos1 = new Inscriptos(inscriptos);
+        Inscriptos inscriptos1 = new Inscriptos(archivoDeInscriptos);
 
 
 //        new RadioCompetition(inscriptos1, lectorTxtConcursos);
