@@ -11,8 +11,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 
-import static java.lang.System.lineSeparator;
-
 public class ArchivoDeInscriptos implements RegistroInscriptos {
     final String FECHAINSCRIPCION_VACIA = "La fecha de inscripción no puede ser null";
     private String path;
@@ -24,7 +22,7 @@ public class ArchivoDeInscriptos implements RegistroInscriptos {
     @Override
     public void registrar(Inscripto inscripto) {
 
-        String linea = inscripto.apellido() + ", " + inscripto.nombre() + ", " + inscripto.telefono() + ", " + inscripto.email() + ", " + inscripto.idConcurso() + lineSeparator();
+        String linea = inscripto.apellido() + ", " + inscripto.nombre() + ", " + inscripto.telefono() + ", " + inscripto.email() + ", " + inscripto.idConcurso();
 
         final Path path = Paths.get(this.path);
         try {

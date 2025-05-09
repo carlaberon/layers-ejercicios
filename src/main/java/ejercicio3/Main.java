@@ -1,11 +1,10 @@
 package ejercicio3;
 
+import ejercicio3.database.DataBaseRegistroDeConcursos;
 import ejercicio3.model.Inscripto;
 import ejercicio3.model.Inscriptos;
-import ejercicio3.model.RegistroDeConcursos;
 import ejercicio3.model.RegistroInscriptos;
 import ejercicio3.services.ArchivoDeInscriptos;
-import ejercicio3.services.LectorTxtConcursos;
 
 import javax.swing.*;
 
@@ -29,7 +28,10 @@ public class Main {
     }
 
     private void start() {
-        RegistroDeConcursos lectorTxtConcursos = new LectorTxtConcursos(PATH_CONCURSOS);
+//        RegistroDeConcursos lectorTxtConcursos = new LectorTxtConcursos(PATH_CONCURSOS);
+//
+        DataBaseRegistroDeConcursos registroBD = new DataBaseRegistroDeConcursos();
+
         RegistroInscriptos inscriptos = new RegistroInscriptos() {
             @Override
             public void registrar(Inscripto inscripto) {
@@ -43,6 +45,6 @@ public class Main {
 
 
 //        new RadioCompetition(inscriptos1, lectorTxtConcursos);
-        new RadioCompetition(inscriptos1, lectorTxtConcursos);
+        new RadioCompetition(inscriptos1, registroBD);
     }
 }

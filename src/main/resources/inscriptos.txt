@@ -2,5 +2,6 @@ apellido, nombre, teléfono, email, idconcurso
 Young, Angus, 4444-898789, angus@acdc.com, 1
 Johnson, Brian, 7789-658987, brian@acdc.com, 2
 
-carla, beron, 2345-678965, alracnoreb@gmail.com, 1
-
+carla, beron, 2345-675432, alracnoreb@gmail.com, 1
+jose, beron, 2345-765432, jos@gmail.com, 1
+carla, beron, 3456-765493, alracnoreb@gmail.com, 2
